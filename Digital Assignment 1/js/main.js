@@ -16,6 +16,9 @@ class MyScene extends Phaser.Scene {
     constructor() {
         super();
         
+		//create all local variables
+		
+		//create all image variables
         this.img_background = null;
 		this.img_bird = null;
 		this.img_tree = null;
@@ -26,11 +29,23 @@ class MyScene extends Phaser.Scene {
 		this.img_coffee_mug = null;
 		this.img_coffee_mug_spilled = null;
 		this.img_man = null;
+		
+		//create all sound variables
+		this.snd_bird = null;
+		this.snd_mouse = null;
+		this.snd_keyboard = null;
+		this.snd_farmville = null;
+		this.snd_coffee = null;
+		this.snd_inner_thoughts = null;
+		
+		//create all variables that control game actions and movements
+		this.coffeeSpilled = false;
+		this.birdShouldMove = false;
+		this.mouseShouldMove = false;
     }
-    
+	
     preload() {
-        // Load an image and call it 'logo'.
-        //this.load.image( 'logo', 'assets/phaser.png' );
+        //Load all images
 		this.load.image( 'background', 'assets/Background.png' );
 		this.load.image( 'bird', 'assets/Bird.png' );
 		this.load.image( 'tree', 'assets/Tree.png' );
@@ -41,21 +56,84 @@ class MyScene extends Phaser.Scene {
 		this.load.image( 'coffee_mug', 'assets/Coffee Mug.png' );
 		this.load.image( 'coffee_mug_spilled', 'assets/Coffee Mug Spilled.png' );
 		this.load.image( 'man', 'assets/Man at Desk.png' );
+		
+		//Load all audio
+		this.load.audio('bird_sound', 'assets/bird.ogg');
+		this.load.audio('mouse_sound', 'assets/mouse.ogg');
+		this.load.audio('keyboard', 'assets/typing.ogg');
+		this.load.audio('farmville', 'assets/farmville.ogg');
+		this.load.audio('coffee', 'assets/coffee.ogg');
+		this.load.audio('inner_thoughts', 'assets/thoughts.ogg');
+		this.load.audio('outside', 'assets/outside.ogg');
+		this.load.audio('empty_office', 'assets/empty.ogg');
     }
     
     create() {
-        // Create a sprite at the center of the screen using the 'logo' image.
-        this.bouncy = this.physics.add.sprite( this.cameras.main.centerX, this.cameras.main.centerX, 'logo' );
-		this.img_background = this.physics.add.sprite( 0, 0, 'background' );
-		this.img_bird = this.physics.add.sprite( 0, 0, 'bird' );
-		this.img_tree = this.physics.add.sprite( 0, 0, 'tree' );
-		this.img_office = this.physics.add.sprite( 0, 0, 'office' );
-		this.img_mouse = this.physics.add.sprite( 0, 0, 'mouse' );
-		this.img_mouse_cover = this.physics.add.sprite( 0, 0, 'mouse_cover' );
-		this.img_rug = this.physics.add.sprite( 0, 0, 'rug' );
-		this.img_coffee_mug = this.physics.add.sprite( 0, 0, 'coffee_mug' );
-		this.img_coffee_mug_spilled = this.physics.add.sprite( 0, 0, 'coffee_mug_spilled' );
-		this.img_man = this.physics.add.sprite( 0, 0, 'man' );
+		//var graphics = this.add.graphics();
+		
+		//Create all the image sprites
+		this.img_background = this.add.sprite( this.cameras.main.centerX, this.cameras.main.centerY, 'background' );
+		this.img_bird = this.add.sprite( this.cameras.main.centerX, this.cameras.main.centerY, 'bird' );
+		this.img_tree = this.add.sprite( this.cameras.main.centerX, this.cameras.main.centerY, 'tree' );
+		this.img_office = this.add.sprite( this.cameras.main.centerX, this.cameras.main.centerY, 'office' );
+		this.img_mouse = this.add.sprite( this.cameras.main.centerX, this.cameras.main.centerY, 'mouse' );
+		this.img_mouse_cover = this.add.sprite( this.cameras.main.centerX, this.cameras.main.centerY, 'mouse_cover' );
+		this.img_rug = this.add.sprite( this.cameras.main.centerX, this.cameras.main.centerY, 'rug' );
+		this.img_coffee_mug = this.add.sprite( this.cameras.main.centerX, this.cameras.main.centerY, 'coffee_mug' );
+		this.img_coffee_mug_spilled = this.add.sprite( this.cameras.main.centerX, this.cameras.main.centerY, 'coffee_mug_spilled' );
+		//Make the spilled mug invisible for now
+		this.img_coffee_mug_spilled.setAlpha(0);
+		this.img_man = this.add.sprite( this.cameras.main.centerX, this.cameras.main.centerY, 'man' );
+		
+		//create all sound events
+		this.snd_bird = this.sound.add('bird_sound');
+		this.snd_mouse = this.sound.add('mouse_sound');
+		this.snd_keyboard = this.sound.add('keyboard');
+		this.snd_farmville = this.sound.add('farmville');
+		this.snd_coffee = this.sound.add('coffee');
+		this.snd_inner_thoughts = this.sound.add('inner_thoughts');
+		this.snd_outside = this.sound.add('outside');
+		this.snd_empty = this.sound.add('empty_office');
+		
+		
+		//all input for this game is handled by the one pointerdown callback function... oh boy
+		this.input.on('pointerdown', function (pointer){
+			var currX = pointer.x;
+			var currY = pointer.y;
+			/*template:
+			if(currX >= MIN && currY >= MIN && currX <= MAX && currY <= MAX){
+				do the thing
+			}
+			*/
+			//when the coffee mug is clicked on, it spills over
+			if(currX >= 561 && currY >= 87 && currX <= 650 && currY <= 130){
+				this.scene.snd_bird.play();
+				this.scene.birdShouldMove = true;
+			}
+			if(currX >= 714 && currY >= 349 && currX <= 728 && currY <= 374){
+				this.scene.snd_mouse.play();
+				this.scene.mouseShouldMove = true;
+			}
+			if(currX >= 372 && currY >= 247 && currX <= 424 && currY <= 268){
+				this.scene.snd_keyboard.play();
+			}
+			if(currX >= 263 && currY >= 150 && currX <= 377 && currY <= 246){
+				this.scene.snd_farmville.play();
+			}
+			if(currX >= 484 && currY >= 154 && currX <= 512 && currY <= 185){
+				this.scene.snd_coffee.play();
+			}
+			if(currX >= 391 && currY >= 162 && currX <= 468 && currY <= 212){
+				this.scene.snd_inner_thoughts.play();
+			}
+			if(currX >= 54 && currY >= 87 && currX <= 280 && currY <= 183){
+				this.scene.snd_outside.play();
+			}
+			if(currX >= 0 && currY >= 192 && currX <= 248 && currY <= 437){
+				this.scene.snd_empty.play();
+			}
+		});
+		
         
         // Make it bounce off of the world bounds.
         /*this.bouncy.body.collideWorldBounds = true;
@@ -80,6 +158,34 @@ class MyScene extends Phaser.Scene {
         // This function returns the rotation angle that makes it visually match its
         // new trajectory.
         //this.bouncy.rotation = this.physics.accelerateToObject( this.bouncy, this.input.activePointer, 500, 500, 500 );
+		//var color = 0xffff00;
+		//var thickness = 2;
+		//var alpha = 1;
+		
+		//graphics.clear();
+		//graphics.lineStyle(thickness, color, alpha);
+		//graphics.strokeRect(484, 154, 512 - 484, 185 - 154);
+		if(this.birdShouldMove && this.img_bird.y < this.cameras.main.centerY + 65){
+			this.img_bird.x -= 1;
+			this.img_bird.y += 1;
+		}
+		
+		if(this.mouseShouldMove && this.img_mouse.x > this.cameras.main.centerX - 40){
+			this.img_mouse.x -= 2;
+		}
+		else if(this.mouseShouldMove && this.img_mouse.x > 50){
+			this.img_mouse.x -= 2;
+			this.img_mouse.y += 1;
+		}
+		else{
+			this.img_mouse.x = this.cameras.main.centerX;
+			this.img_mouse.y = this.cameras.main.centerY;
+			this.mouseShouldMove = false;
+		}
+		if(this.coffeeSpilled == true){
+			this.coffee_mug.setAlpha(0);
+			this.coffee_mug_spilled.setAlpha(1);
+		}
     }
 }
 
@@ -89,5 +195,7 @@ const game = new Phaser.Game({
     width: 800,
     height: 600,
     scene: MyScene,
-    physics: { default: 'arcade' },
+    audio: {
+        disableWebAudio: true
+    }
     });

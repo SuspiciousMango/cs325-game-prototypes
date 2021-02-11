@@ -27,20 +27,35 @@ The main focus of originality in my game is the sound design. I recorded all the
 </li>
 
 <li><strong>Technical Merit:</strong>
-What is interesting about your game technology?
+To get around having to manually position each sprite on screen, I created them all as layers on a GIMP canvas and exported them separately. They are all tecnhically the size of the entire screen, 
+and to counteract this the "buttons" that activate each sound and animation are really just the program checking for whether or not the pointer is within a certain square. Is this the best solution? 
+Not necessarily, but it was an interesting workaround I came up with after realizing doing the normal phaser sprite detection wouldn't work on my game window-sized sprites.
 </li>
 
 <li><strong>Prototype Postmortem:</strong>
-What did you learn from this prototype?
-What was the easiest or hardest part of making it?
+I learned that it is both way easier and way harder to prototype a basic game in a week than I thought. Phaser is clearly very powerful, and I was able to do a lot really easily that I wouldn't have been able to do 
+with other engines. On the flip side, when something went wrong, it tended to go very wrong. For instance: the hardest part of making this prototype was just learning the phaser syntax and how certain functions worked. 
+It took me a solid 3 hours to get my pointer listener working (and to be honest I'm not entirely sure why what I did ended up making it work opposed to everything else I tried) and the rest of my code was reliant on that, 
+so it was impossible for me to pivot to implementing different features during that time. Additionally I cannot seem to get console.log to appear anywhere when running from the local python server, so debugging is basically 
+just changing the lines of code that I think might be the problem until something works. A very inefficient system that, along with the pointer listener not working, severely limited the time I had to actually implement features.
 </li>
 
 <li><strong>Prototype Assets:</strong>
 Did you make your prototype assets from scratch? Did you borrow them? Cite your sources here.
 <ul>
-<li>Green rug clipart from <a href="https://www.mycutegraphics.com/graphics/rug/green-oval-rug.html">mycutegraphics.com</a></li>
-<li>Man at the computer clipart from <a href="https://creazilla.com/nodes/29670-exhausted-computer-user-clipart">creazilla.com</a></li>
-<li>Coffee mug clipart from <a href="https://www.pngaaa.com/detail/1414071">pngaaa.com</a></li>
+<li>Images: 
+<li><a href="https://www.mycutegraphics.com/graphics/rug/green-oval-rug.html">Green Rug</a></li>
+<li><a href="https://creazilla.com/nodes/29670-exhausted-computer-user-clipart">Man at the Computer</a></li>
+<li><a href="https://www.pngaaa.com/detail/1414071">Coffee Mug</a></li>
+</li>
+<li>Sounds:
+<li><a href="https://freesound.org/people/GeorgeHopkins/sounds/537244/">Keyboard typing</a></li>
+</li>
+<li>Phaser examples that code or concepts were taken from:
+<li><a href="http://phaser.io/examples/v3/view/game-objects/sprites/moving-sprite">Sprite Movement</a></li>
+<li><a href="http://phaser.io/examples/v3/view/input/pointer/pointer-buttons">Pointer Click Listeners</a></li>
+<li><a href="http://phaser.io/examples/v3/view/audio/html5-audio/play-audio-file"></a>Loading and playing audio</li>
+</li>
 </ul>
 </li>
 
@@ -53,7 +68,7 @@ Bored in the Office is about a man who is, well, bored in the office. Click on t
 </li>
 
 <li><strong>Theme:</strong>
-Instead of choosing a theme, I decided to choose a challenge: "you cannot win with sound off." In my opinion, the "win condition" of Bored at Work is the player having an enjoyable reaction to the effects, and 
+Instead of choosing a theme, I decided to choose a challenge: "you cannot win with sound off." In my opinion, the "win condition" of Bored at the Office is the player having an enjoyable reaction to the effects, and 
 although I guess technically possible, it would be very hard to have an enjoyable reaction to the game if you could not hear the voice lines I put so much effort into.
 </li>
 
@@ -82,8 +97,8 @@ The only two "strategies" that really exist for this game are selectively clicki
 
 <li><strong>Story/Setting/Premise:</strong>
 This game originated from the fact that I didn't have an idea for a game to make, so I decided to channel my lack of an idea into a game about being bored and not having anything to do. Since the mechanics themselves are nothing spectacular, I decided to focus 
-on the visual and auditory elements to capture the player. The lore of the game can be summed up in the title: the main character is bored at work. Everything else is left up to the player to interpret or ignore as they please. They can take the game as some
-metaphysical commentary, or just laugh at my looney voice acting.
+on the visual and auditory elements to capture the player. The lore of the game can be summed up in the title: the main character is bored at the office. Everything else is left up to the player to interpret or ignore as they please. They can take the game as some
+metaphysical commentary, or just laugh at my really bad voice acting.
 </li>
 
 <li><strong>Target Audience:</strong>
@@ -91,7 +106,8 @@ Anyone and everyone who enjoys clicking their mouse and having a good laugh.
 </li>
 
 <li><strong>Play Time:</strong>
-How long does your game take to play?
+In theory the game could take as long as the player wishes depending on how long they want to spend searching for all the secrets. I expect that a normal game with all features fully implemented and multiple scenes to explore could take about an hour or so to find everything, 
+although my prototype lacks most of those features and so only takes a few minutes to find everything
 </li>
 
 </ul>
