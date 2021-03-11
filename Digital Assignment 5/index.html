@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Rainbow Mouse Poop</title>
+<style>
+body
+{
+    color: #777;
+    font-family: "Avenir", Verdana, sans-serif;
+}
+#readme
+{
+    margin-top: 10px;
+}
+</style>
+</head>
+
+<body>
+<div id="game"></div>
+<div id="readme">
+<h2>Rainbow Mouse Poop</h2>
+
+<ul>
+<li><strong>Originality:</strong>
+Original premise, original art, and original control scheme
+</li>
+
+<li><strong>Technical Merit:</strong>
+The rainbow poops are done via a sprite sheet
+</li>
+
+<li><strong>Prototype Postmortem:</strong>
+I learned probably the most important skill, how to debug in-browser js programs. I didn't realize that, in order to see the error output, you have to inspect element and look there.
+For all of DA1, I was simply guessing what was wrong when my program wouldn't load. This one went much smoother because that was no longer my debugging process.
+</li>
+
+<li><strong>Prototype Assets:</strong>
+Did you make your prototype assets from scratch? Did you borrow them? Cite your sources here.
+<ul>
+<li>All assets made from scratch
+</ul>
+</li>
+
+<li><strong>Prototype Closest Other Game:</strong>
+<a href="..\Digital Assignment 2">Digital Assignment 2: Rainbow Mouse Poop</a>
+<ul>
+<li>Changes made:</li>
+<li>New control scheme (as requested by TA) use the arrow keys to move the mouse
+<li>Poops are no longer pointless, and now give a random powerup based on the color of the poop
+<li>Pooping is no longer automatic. Press the spacebar to poop and get a random powerup
+<li>The mouse is now slightly tinted brown when he can poop to show the player when the power has "recharged"
+<li>Updated some text throughout the game
+<li>Added a squeak to the mouse whenever he poops to at least get SOME sound into the game
+<li>Note about the powerups: Currently, only 5 powerups are implemented (including the brown poop, which is normal and does nothing. So really only 4). There is still a
+ random chance to get all the different colors, so it is a little difficult to check out what each powerup does individually. Additionally, because of the simplicity of the game,
+ the powerups don't last very long. They are pretty much "blink and you'll miss it." This is to keep the game somewhat fair, but it can be jarring for people who haven't spent as
+ much time staring at rainbow poops as I have. In order to save my grade and make sure nothing is missed, I will list what each implemented powerup does: red is the boost, and
+ makes the mouse move twice as fast. Green scales the mouse to two times its original size. Purple is a teleport, and randomly teleports the mouse to a new location. White is the "home move" and makes the mouse home move towards
+ the mouse. Brown is a normal poop and does absolutely nothing.
+</li>
+</ul>
+</li>
+
+<li><strong>High Concept:</strong>
+Guide the mouse to the mouse house. Also he poops rainbows for some reason.
+</li>
+
+<li><strong>Theme:</strong>
+Although, I admit, its a little bit of a stretch, the theme I chose was "ebullient." It certainly makes sense to me that only a mouse so full of energy could poop that many times in such a short period of time.
+Especially considering they are about as big as he is each time! Also, the use of bright colors is supposed to add cheerfulness to the atmosphere of the game (or at least not make it feel gross and gritty).
+</li>
+
+<li><strong>Mandated Variety:</strong>
+The in-game mouse is controlled indirectly by the player mouse and the entire game is built on randomness. The game is mostly geared towards the competitor but the artist may
+end up enjoying seeing the brightly colored poops as the mouse moves around. Lastly, this game is an overhead and maybe, by the loosest, saddest definition, some would consider it
+a puzzle game. I definitely don't though.
+</li>
+
+<li><strong>Prototype Goal:</strong>
+Control via mouse pointer, ability to load sprite sheets, and ability to place objects randomly on the game screen.
+</li>
+
+<li><strong>Player Experience Goals:</strong>
+Enjoying my custom assets and the somewhat ridiculous movement the mouse uses to get around. (Its the same as the minimal template logo uses, so to say it looks like an actual animal moving would be incorrect.
+</li>
+
+<li><strong>Gameplay:</strong>
+When the game starts, the mouse and the mouse house are placed randomly on the screen. The mouse must be guided via the computer mouse pointer to the mouse house. Along the way,
+the mouse leaves behind randomly colored poops. In the original iteration of the design, these were going to do something and add to the overall randomness, but I ran out of time and
+decided against implementing that. They do serve as a faux time measure though. At the end of the game, the starting distance between the mouse and the house and the number of poops
+it took to get there (which come out of the mouse at regular intervals) are displayed to the player. In this way, they can compare stats with each other and even set up ratios of
+distance/poop to see who played the best even though the starting locations are entirely randomized.
+</li>
+
+<li><strong>Strategies:</strong>
+Since the spawn locations are randomized, there is no real strategy other than quickly noticing where the massive grey box is and moving your pointer there. The winning rounds are the ones where the house
+randomly spawns near where your pointer is already, and the mouse just makes a straight beline right to the house.
+</li>
+
+<li><strong>Story/Setting/Premise:</strong>
+I won't lie, there is absolutely nothing to this world. The mouse exists in a black void with only his house and his absolutely massive poops. I needed randomness and my first thought was to randomly assign color
+to a game object and thats where the colored poops came in. Although I welcome people to try to come up with lore for who this mouse is and what he is doing. The wackier the better.
+</li>
+
+<li><strong>Target Audience:</strong>
+People who enjoy color. People who enjoy simple replay value.
+</li>
+
+<li><strong>Play Time:</strong>
+The mouse can usually be guided to the house in under 10 seconds.
+</li>
+
+</ul>
+</div>
+
+<!-- main.js must come at the end since it expects the HTML to have been created. -->
+<script src="js/main.js" type="module"></script>
+</body>
+</html>
