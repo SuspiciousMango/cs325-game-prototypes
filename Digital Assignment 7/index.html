@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Black Hole Baseball!</title>
+<style>
+body
+{
+    color: #777;
+    font-family: "Avenir", Verdana, sans-serif;
+}
+#readme
+{
+    margin-top: 10px;
+}
+</style>
+</head>
+
+<body>
+<div id="game"></div>
+<div id="readme">
+<h2>Black Hole Baseball!</h2>
+
+<ul>
+<li><strong>Originality:</strong>
+A puzzle game where the player doesn't have direct control over the object they are trying to move around. Instead other factors influence how the object moves, and
+the player influences those factors. I also think the premise is somewhat original. Instead of going with a "get the ball to a goal" or something similar, I decided to
+make it an asteroid destroying earth with the help of gravitational assists from black holes.
+</li>
+
+<li><strong>Technical Merit:</strong>
+I had to write my own gravity code because phaser's built in "accelerateToObject" function only works on one object at a time so I couldn't have all 3 black holes influencing
+the asteroid at the same time. Instead I calculated each x and y component of acceleration for each black hole and added them all together. At first I was worried that I
+would need to deal with complicated inverse trig functions in order to get the angles I needed, but then I remembered sin = o/h and cos = a/h and that made everything
+exponentially easier. Aside from that, I also implemented 2 different types of board resets. One only resets the position of the asteroid, and the other resets everything. 
+The first is for making minor adjustments to an already existing solution that may be really close, but not quite there yet. The second is for when things really go wrong 
+and the player just wants to restart.
+</li>
+
+<li><strong>Prototype Postmortem:</strong>
+The hardest part of the prototype was definitely getting the acceleration to work properly. Because there could be either 1, 2, or 3 black holes on the board, the code
+needed to be flexible enough to deal with all 3 of those scenarios. At first, I was hoping accelerateToObject would do what I needed it to, but it seemed to only be able
+to take into account 1 object at a time, which wasn't good enough for me. At first I thought about making only the closest black hole act on the asteroid, but I decided
+that it was really important to me that all of them can act on it at once, because that is how gravity works irl. Even the most distant stars have SOME gravitational effect
+on us. Coming up with the actual code had its challenges, but once I refreshed my trig with a simple google search it really wasn't that bad.
+</li>
+
+<li><strong>Prototype Assets:</strong>
+All assets made from scratch. I looked at a couple phaser examples for syntax(things like how to properly format callbacks, the correct functions and string keys to use
+for input, and the like), but no code was taken directly from any of them.
+</li>
+
+<li><strong>Prototype Closest Other Game:</strong>
+<a href="..\Digital Assignment 6">Digital Assignment 6: Black Hole Baseball</a>
+<ul>
+<li>Changes made:
+<li>Added sounds! The game is no longer silent</li>
+<li>Added a background image! The game no longer takes place in a black void</li>
+<li>Added an animation for the asteroid getting sucked into a black hole. No longer does it just remain motionless next to it when the game ends.</li>
+<li>Added flying saucers: There are 4 of them in total, 3 small ones and a mothership. The mothership is always placed in the direct middle of the screen, preventing
+the equal velocity exploit (which I will explain later) and is motionless. The 3 smaller ones are placed randomly on the board, and given a random x and y oscilation.
+Hitting any of the flying saucers will cause a game over. I feel it is also important to state here how much time it took to get the oscilation working properly, because
+it required me to dig into the physics body object attached to each sprite and manually check velocities, absolute values of velocities, and accelerations, as well as
+keeping track of starting velocities and making sure everything reset to the proper positions when the player hit "a" or "r". There were quite a few bugs related to
+things not being reset properly that I had to spend a while trying to squash (but hey, I learned how to enable phaser's debug mode, so that's cool)</li>
+<li>Added the ability to apply a starting velocity in both the x and y directions at the same time: Before the addition of the mothership, allowing the player to set both
+an x velocity and a y velocity would have removed all challenge from the game, as all the player would have to do is set both to be equal, and the asteroid would fly
+right to the planet. I dubbed this "The Equal Velocity Exploit" and it was the reason in the original that the player couldn't set both an x and y velocity at the same time.
+With the inclusion of the mothership blocking the direct path to the planet, it is now more reasonable to allow the player to set a velocity in both directions again.</li>
+<li>Decreased the velocity increment from 50 down to 10: The player can now set the x and y velocities in increments of 10 instead of 50. This, coupled with the ability to set
+both at the same time, allows for more fine control of the asteroid. Because of the inclusion of the flying saucers, I felt it made sense to give the player finer control
+over the asteroid's movement.</li>
+</li>
+</ul>
+</li>
+
+<li><strong>High Concept:</strong>
+Using the gravitational power of black holes, navigate an asteroid through space so it impacts a planet.
+</li>
+
+<li><strong>Theme:</strong>
+N/A
+</li>
+
+<li><strong>Mandated Variety:</strong>
+N/A
+</li>
+
+<li><strong>Prototype Goal:</strong>
+Using multiple gravity sources to influence an object simultaneously on a 2d plane
+</li>
+
+<li><strong>Player Experience Goals:</strong>
+Feeling of reveal as they try more combinations and learn to understand how the black holes work
+Feeling of accomplishment when they successfully navigate the asteroid to the planet
+Feeling of accomplishment as they attempt to optimise their solution to use fewer and fewer black holes
+</li>
+
+<li><strong>Gameplay:</strong>
+Clicking the left mouse button will place a black hole where the cursor is, clicking the right mouse button will remove the last black hole placed. Pressing the arrow
+keys will adjust the initial velocity of the asteroid, but it is capped at 500 units per second in either direction. Additionally, the initial velocity can only be
+in one of the 2 directions, and cannot be in both. In order to increase the initial Y velocity, the initial X velocity must be 0, and vice-versa. The enter key begins
+the game, and starts the physics on the asteroid. At any time, the player can press "a" or "r" to reset back to the beginning, stopping all physics and resetting the
+asteroid's position. "a" only resets the asteroids position, wheras "r" also removes all black holes and sets the asteroid's initial velocity back to 0.
+</li>
+
+<li><strong>Strategies:</strong>
+Trial and error. The "a" reset was included because I would consistently get really close to winning, but not quite there, and I didn't want to have to restart all the
+way from the beginning. The best strategy is to find a solution that almost works and then keep making small changes to the location of the black holes until it works.
+</li>
+
+<li><strong>Story/Setting/Premise:</strong>
+Obviously the game is set in space, but beyond that there isn't much of a story to it. There really is no reason that the player is trying to blow up the earth other than
+"its the objective of the game," although I thought it would be a humorous and unexpected win condition to add to the game.
+</li>
+
+<li><strong>Target Audience:</strong>
+I think nearly anyone can enjoy this game. I've always been fascinated with orbits and representing them digitally so I could spend a while just placing black holes down
+in different configurations and seeing what happens. I hope there are others like me out there that will get as much enjoyment from this game as I have.
+</li>
+
+<li><strong>Play Time:</strong>
+Once the player grasps how the whole system works, it should only take a few minutes for them to find a suitable configuration and successfully navigate the asteroid
+to the planet.
+</li>
+
+</ul>
+</div>
+
+<!-- main.js must come at the end since it expects the HTML to have been created. -->
+<script src="js/main.js" type="module"></script>
+</body>
+</html>

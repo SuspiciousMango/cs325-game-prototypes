@@ -191,4 +191,5 @@ const game = new Phaser.Game({
 	- Win and loss animations (asteroid getting sucked into black hole, planet exploding)
 	- Clicking on a black hole to change its location without having to remove and replace it
 	- Complete premise rework: Planets are obstacles, navigate the asteroid out of the system without touching the planets
+	- Fix the placing black holes during play bug
 */
