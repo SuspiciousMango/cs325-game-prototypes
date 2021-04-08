@@ -44,7 +44,7 @@ class MyScene extends Phaser.Scene {
     }
     
     preload() {
-		this.load.image('background', 'assets/Background.jpg')
+		this.load.image('background', 'assets/background.jpg')
         this.load.image('asteroid', 'assets/Asteroid.png');
 		this.load.image('blackhole', 'assets/Black Hole 2.png');
 		this.load.image('planet', 'assets/Planet.png');
