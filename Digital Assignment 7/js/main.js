@@ -113,6 +113,8 @@ class MyScene extends Phaser.Scene {
 		this.input.mouse.disableContextMenu();
 		this.input.on('pointerup', this.createBlackHole, this);
 		
+		this.input.keyboard.addCapture('DOWN');
+		
 		this.physics.add.overlap(this.asteroid, this.mothership, this.endGameLossSS, null, this);
 		this.physics.add.overlap(this.asteroid, this.planet, this.endGameWin, null, this);
 		

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Rock, Paper, Scissors... TWO! Custom Coliseum</title>
+<style>
+body
+{
+    color: #777;
+    font-family: "Avenir", Verdana, sans-serif;
+}
+#readme
+{
+    margin-top: 10px;
+}
+</style>
+</head>
+
+<body>
+<div id="game"></div>
+<div id="readme">
+<h2>Rock, Paper, Scissors... TWO! Custom Coliseum</h2>
+
+<ul>
+<li><strong>Originality:</strong>
+While the idea of expanding on rock, paper, scissors is common, I have never seen it done with a separate triangle before. Usually they try to sneak everything in to make one
+big loop, but I thought it would be easier, more interesting, and more fun to simply have a second triangle that interacts with the classic first triangle. Additionally, I
+had to come up with a solution that allowed two players to play on the same keyboard without (easily) being able to see what the other person was going to play and without
+forcing both players to decide what they are going to play simultaneously (like in the regular game). Additionally, coming up with this new triangle took a lot of time and
+creativity. Trying to think of common, everyday objects that fit the "theme" of the original Rock, Paper, Scissors but could ALSO interact with each other in the same
+"triangle" manner as the original 3 AND could interact WITH the original 3 was quite a challenge. Figuring out what types of objects would fit the "theme" of the original game
+was its own challenge. At first I was thinking they had to be natural, but then I realized neither paper or scissors is. Rock and Paper are pretty stationary, uncomplicated
+objects, but Scissors is, when you get right down to it, a machine, made up of levers, hinges, and sharpened blades. Obviously its a VERY simple machine, but still, where
+should the line be drawn. I eventually decided that my objects could be either man made (like scissors and paper) or natural (like rock) but also could not be overly
+complicated (no cell phones, living creatures, etc). I eventually decided on a Purse, which can store coins inside of it, a Coin, which can be used to purchase a Can of soda,
+and a Can, that can spill inside of a purse, ruining it. I felt like this was a decent triangle, and with a little bit of "creative liberty" I managed to get each one to
+beat, lose to, and tie against an object from the original triangle as well.
+</li>
+
+<li><strong>Technical Merit:</strong>
+Although the technology itself isn't that interesting (its really just a bunch of if statements), I think my implementation of the technology from a problem-solving standpoint
+to allow players to decide on their moves non-simultaneously and not be punished for it is pretty clever. In order to pick which of the 6 "pieces" they want to play as, they
+must click a key on their keyboard. This way, their hand acts as a natural block that prevents the other player from easily seeing what they're doing, and players who know their
+keyboard well enough will be able to press the keys without even looking at the keyboard. If neither player has to look at the keyboard, then neither player can look at what
+the other picked. This, in my opinion, is a better solution than forcing both players to pick simultaneously, because doing that in code would be difficult (something like
+checking the number of frames between each button press and cancelling the action if they're too far apart) and requiring the players to manually choose when to go together
+feels like it defeats the purpose of the game being digital in the first place. With my solution, players can make their decision whenever they want, and don't have to rely
+on each other to be ready at the same time. The game will wait for them.
+</li>
+
+<li><strong>Prototype Postmortem:</strong>
+I learned that sometimes an idea that seems really good on paper (and even managed to survive analog testing) doesn't work out as well in practice. I originally had an idea
+for an "upgrade" system (the remenants of which are still in the code) that essentially flipped how a piece played among its regular triangle (more about it in the gameplay
+section). Although I thought this idea was really neat on paper, implementing it required so much overhead and modification to game logic that I hadn't previously considered
+that I decided to abandon the idea and save it for the iteration, where I will have more time to flesh it out and make it work the way I want it to.
+</li>
+
+<li><strong>Prototype Assets:</strong>
+All images custom made by me
+
+<li><strong>Prototype Closest Other Game:</strong>
+This game closest resembles its parent game, Rock, Paper, Scissors. No code was taken directly from any phaser examples, although the phaser documentation was used heavily
+to understand syntax and the like.
+</li>
+
+<li><strong>High Concept:</strong>
+Rock, Paper, Scissors, but there are 3 new options.
+</li>
+
+<li><strong>Theme:</strong>
+N/A
+</li>
+
+<li><strong>Mandated Variety:</strong>
+N/A
+</li>
+
+<li><strong>Prototype Goal:</strong>
+How well the different win triangles interact, how well the upgrade system works (not yet though)
+</li>
+
+<li><strong>Player Experience Goals:</strong>
+The same experience they get playing Rock, Paper, Scissors, but with new pieces.
+</li>
+
+<li><strong>Gameplay:</strong>
+To start, each player decides if they want to be in the Red corner or the Blue corner. Players must move to the side of the keyboard that their corner is on (Red is on the
+left and uses the number line keys to input. Blue is on the right and uses the numpad keys to input) Once sides are chosen, the rounds can begin. Players must decide in their
+head if they would like to play Rock (1), Paper (2), Scissors (3), Purse (4), Can (5), or Coin (6). Once they have decided, they must hit the corresponding key for their corner
+("1" for Red Rock, "numpad 1" for Blue Rock, etc.). The game then calculates the winner, and updates the "Wins" accordingly. Originally, there was also going to be an "upgrade"
+that each piece could take on, that essentially flipped its position in the triangle (for example, Upgraded Rock would beat Paper, but lose to Scissors) but had no effect
+on the opposite triangle (Rock would still beat Can and lose to Coin). It also wouldn't affect ties (Upgraded Rock and Regular Rock still tie, and Upgraded Rock ties with
+both Regular and Upgraded Purse). This is where the "Custom Coliseum" part of the name mainly comes from, because it would have allowed dynamic "customization" of each piece.
+It also would have technically introduced 6 new pieces with different win/loss conditions than any of the other pieces, which I thought was cool. (Imagine having a new RPS piece
+that beats paper but loses to scissors. Thats not something that exists in the current game). This idea was ultimately (temporarily) disregarded because not only did it make the
+if chains super complicated, but there were also grey areas with questionable outcomes (since upgrading Rock OR Scissors both allow Scissors to beat Rock, what happens when BOTH
+players decide to upgrade? Does it flip back to Rock winning, does Scissors just have two win conditions? I wasn't sure how I wanted to do this, and since the win logic was already
+complex enough. I just decided to leave it be and come back to it next week).
+</li>
+
+<li><strong>Strategies:</strong>
+Similar to the original game, there is not a lot of strategy involved. It is primarily a luck-based game, but just as mind games arise in the original (playing 5 rocks in a row, and
+then switching to scissors kind of thing), I'm sure someone can come up with some kind of strategy that involves having 6 pieces to play with instead of just 3
+</li>
+
+<li><strong>Story/Setting/Premise:</strong>
+
+</li>
+
+<li><strong>Target Audience:</strong>
+Anyone that has a score to settle with another person and wants luck to be the deciding factor.
+</li>
+
+<li><strong>Play Time:</strong>
+1 round takes only a couple seconds. Players can go as long as they want.
+</li>
+
+</ul>
+</div>
+
+<!-- main.js must come at the end since it expects the HTML to have been created. -->
+<script src="js/main.js" type="module"></script>
+</body>
+</html>
